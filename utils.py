@@ -75,6 +75,18 @@ def get_dataset(dataset, data_path, batch_size=1, subset="imagenette", args=None
         dst_test = datasets.PCAM(data_path, split='val', download=True, transform=transform)
         class_names = [str(c) for c in range(num_classes)]
         class_map = {x:x for x in range(num_classes)}
+        
+    elif dataset == 'PCAMFULL':
+        channel = 3
+        im_size = (96, 96)
+        num_classes = 2
+        mean = [178.69278044708753 / 255, 137.28123995951555 / 255, 176.36324185008846 / 255]
+        std = [46.344700260152216 / 255, 51.21332066737447 / 255, 42.02253038386832 / 255]
+        transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize(mean=mean, std=std)])
+        dst_train = datasets.PCAM(data_path, split='train', download=True, transform=transform)  # no augmentation
+        dst_test = datasets.PCAM(data_path, split='val', download=True, transform=transform)
+        class_names = [str(c) for c in range(num_classes)]
+        class_map = {x:x for x in range(num_classes)}
 
 
     elif dataset == 'Tiny':
