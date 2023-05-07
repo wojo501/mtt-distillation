@@ -147,6 +147,8 @@ def main(args):
         expert_dir = os.path.join(expert_dir, args.subset, str(args.res))
     if args.dataset in ["CIFAR10", "CIFAR100"] and not args.zca:
         expert_dir += "_NO_ZCA"
+    if args.dataset in ["PCAM32", "PCAM32FULL"] and not args.zca:
+        expert_dir += "_NO_ZCA"
     expert_dir = os.path.join(expert_dir, args.model)
     print("Expert Dir: {}".format(expert_dir))
 
