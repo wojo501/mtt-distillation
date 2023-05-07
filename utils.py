@@ -43,7 +43,7 @@ class Config:
 
 config = Config()
 
-def get_dataset(dataset, data_path, batch_size=1, subset="imagenette", args=None):
+def get_dataset(dataset, data_path, batch_size=1, subset="imagenette", args=None, train_trans = []):
 
     class_map = None
     loader_train_dict = None
