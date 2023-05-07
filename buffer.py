@@ -26,6 +26,8 @@ def main(args):
         save_dir = os.path.join(save_dir, args.subset, str(args.res))
     if args.dataset in ["CIFAR10", "CIFAR100"] and not args.zca:
         save_dir += "_NO_ZCA"
+    if args.dataset in ["PCAM32", "PCAM32FULL"] and not args.zca:
+        save_dir += "_NO_ZCA"
     save_dir = os.path.join(save_dir, args.model)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
