@@ -3,4 +3,6 @@ buffer
 data
 wandb
 venv
+logged_files
 *.pt
+*.png
