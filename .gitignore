@@ -1,8 +1,8 @@
 .idea
-buffer
-data
-wandb
-venv
-logged_files
+buffer/
+data/
+wandb/
+venv/
+logged_files/
 *.pt
 *.png

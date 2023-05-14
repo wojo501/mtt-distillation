@@ -231,6 +231,7 @@ def main(args):
         if it in eval_it_pool and (save_this_it or it % 1000 == 0):
             with torch.no_grad():
                 image_save = image_syn.cuda()
+                #image_save = image_syn.cpu()
 
                 save_dir = os.path.join(".", "logged_files", args.dataset, wandb.run.name)
 
@@ -323,10 +324,10 @@ def main(args):
                     buffer = buffer[:args.max_experts]
                 random.shuffle(buffer)
 
-        start_epoch = np.random.randint(0, args.max_start_epoch)
+        start_epoch = np.random.randint(0, args.max_start_epoch) # 0 or 1
         starting_params = expert_trajectory[start_epoch]
 
-        target_params = expert_trajectory[start_epoch+args.expert_epochs]
+        target_params = expert_trajectory[start_epoch+args.expert_epochs] # [0,1] + 3
         target_params = torch.cat([p.data.to(args.device).reshape(-1) for p in target_params], 0)
 
         student_params = [torch.cat([p.data.to(args.device).reshape(-1) for p in starting_params], 0).requires_grad_(True)]
